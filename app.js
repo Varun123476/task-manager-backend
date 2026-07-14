@@ -1,10 +1,14 @@
 import express from "express";
+import helmet from "helmet";
+import cors from 'cors'
+import compression from "compression";
 import authRoutes from './src/routes/auth.routes.js'
 import taskRoutes from './src/routes/task.routes.js'
 import userRoutes from './src/routes/user.routes.js'
 import errorHandler from "./src/middlewares/error.middleware.js";
 import cookieParser from "cookie-parser";
 import loggerMiddleware from "./src/middlewares/logger.middleware.js";
+import { limiter } from "./src/middlewares/ratelimit.middleware.js";
 
 
 
@@ -13,6 +17,19 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(helmet());
+
+const allowedOrigins = [
+    "http://localhost:3000",
+];
+
+app.use(cors({
+    origin: allowedOrigins
+}));
+
+app.use(limiter);
+app.use(compression())
+
 app.use(loggerMiddleware);
 
 app.use("/uploads", express.static("uploads")); 
