@@ -11,4 +11,4 @@ router.post('/profile-picture',
     uploadProfileImage
 )
 
-export  default router;
+export default router;

@@ -37,11 +37,12 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/tasks", taskRoutes)
 app.use("/api/v1/users", userRoutes)
-app.use(errorHandler);
+
 
 // Temporary Route
 app.get("/", (req, res) => {
     res.send("Task Manager API is Running 🚀");
 });
 
+app.use(errorHandler);
 export default app;
