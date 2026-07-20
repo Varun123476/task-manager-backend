@@ -13,6 +13,7 @@ import { limiter } from "./src/middlewares/ratelimit.middleware.js";
 
 
 const app = express();
+app.set("trust proxy", true);
 
 // Middleware
 app.use(express.json());
