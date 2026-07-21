@@ -23,4 +23,8 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa \
             ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} \
-            "echo 'Connected successfully'"
+            " 
+            cd /home/ubuntu/task-manager &&
+            git pull &&
+            docker compose up --build -d
+            "
