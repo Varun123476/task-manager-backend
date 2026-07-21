@@ -17,8 +17,8 @@ jobs:
           printf "%s" "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-    - name: Test SSH connection
+     -  name: Test SSH connection
       run: |
          ssh -i ~/.ssh/id_rsa \
-         ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} \
-         "echo 'Connected successfully'"
+           ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} \
+           "echo 'Connected successfully'"
