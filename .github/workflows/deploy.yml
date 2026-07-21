@@ -24,7 +24,7 @@ jobs:
           ssh -i ~/.ssh/id_rsa \
             ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} \
             " 
-            cd /home/ubuntu/task-manager &&
+            cd /home/ubuntu/task-manager-backend &&
             git pull &&
             docker compose up --build -d
             "
