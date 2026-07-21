@@ -10,15 +10,16 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+
     steps:
-     - name: Configure SSH
-       run: |
+      - name: Configure SSH
+        run: |
           mkdir -p ~/.ssh
           printf "%s" "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-     - name: Test SSH connection
-       run: |
+     -  name: Test SSH connection
+      run: |
          ssh -i ~/.ssh/id_rsa \
            ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} \
-           "echo 'Connected  successfully'"
+           "echo 'Connected successfully'"
